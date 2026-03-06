@@ -5,22 +5,32 @@
 class Statora < Formula
   desc "PHP version manager — manages PHP, Composer, and extensions per project."
   homepage "https://github.com/khauvannam/statora-cli"
-  version "1.0.0"
+  version "1.0.1"
   license "MIT"
-  depends_on :linux
 
-  if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-    url "https://github.com/khauvannam/statora-cli/releases/download/v1.0.0/statora_1.0.0_linux_x86_64.tar.gz"
-    sha256 "5a97d8c6ac9ddd9d7b96e8a58c9bf60347bbe713c1fcbb5c4b0bba20ca7fa659"
+  on_macos do
+    url "https://github.com/khauvannam/statora-cli/releases/download/v1.0.1/statora_1.0.1_darwin_all.tar.gz"
+    sha256 "1d7dbbfec8bb6c7d63af673c378f90da1b4c09589f569bac1b77fef562a35b6b"
+
     define_method(:install) do
       bin.install "statora"
     end
   end
-  if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-    url "https://github.com/khauvannam/statora-cli/releases/download/v1.0.0/statora_1.0.0_linux_arm64.tar.gz"
-    sha256 "a4921f0b03b7f03a2b9cb14629509a34f7d19f41ab6f1579175ea62db72e1e9d"
-    define_method(:install) do
-      bin.install "statora"
+
+  on_linux do
+    if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
+      url "https://github.com/khauvannam/statora-cli/releases/download/v1.0.1/statora_1.0.1_linux_x86_64.tar.gz"
+      sha256 "0431b3150ce652f76f5d67e32d6072c803c0591ebca8a1fe89dd5421a1d1f1db"
+      define_method(:install) do
+        bin.install "statora"
+      end
+    end
+    if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
+      url "https://github.com/khauvannam/statora-cli/releases/download/v1.0.1/statora_1.0.1_linux_arm64.tar.gz"
+      sha256 "a97047336ae8a4690007d056013061fae3c0b3f0a40fe93baa5354430a58033e"
+      define_method(:install) do
+        bin.install "statora"
+      end
     end
   end
 
