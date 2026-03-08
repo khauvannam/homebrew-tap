@@ -5,12 +5,12 @@
 class Statora < Formula
   desc "PHP version manager — manages PHP, Composer, and extensions per project."
   homepage "https://github.com/khauvannam/statora-cli"
-  version "1.0.2"
+  version "1.0.3"
   license "MIT"
 
   on_macos do
-    url "https://github.com/khauvannam/statora-cli/releases/download/v1.0.2/statora_1.0.2_darwin_all.tar.gz"
-    sha256 "36742c97c1db5412f8dc88d6bdb2a56b335704cf0ecef47815151384b7322ab1"
+    url "https://github.com/khauvannam/statora-cli/releases/download/v1.0.3/statora_1.0.3_darwin_all.tar.gz"
+    sha256 "1392b8e6b2c7f27784c9d6bbe56bb6e5e86c3585b7ffa3d5b6f40133b02ce837"
 
     define_method(:install) do
       bin.install "statora"
@@ -19,15 +19,15 @@ class Statora < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/khauvannam/statora-cli/releases/download/v1.0.2/statora_1.0.2_linux_x86_64.tar.gz"
-      sha256 "994b905e552ad97498ca67d354e53a101409037af15d3b3eff972fa723f8ba42"
+      url "https://github.com/khauvannam/statora-cli/releases/download/v1.0.3/statora_1.0.3_linux_x86_64.tar.gz"
+      sha256 "646d9894878516d579ed3d06d1eb67895ab03fc509dfc13df32c078954f843af"
       define_method(:install) do
         bin.install "statora"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/khauvannam/statora-cli/releases/download/v1.0.2/statora_1.0.2_linux_arm64.tar.gz"
-      sha256 "34dd38dd9cf80035f4d2160ff9c433249ba6a36055a192955746316b00a11b6b"
+      url "https://github.com/khauvannam/statora-cli/releases/download/v1.0.3/statora_1.0.3_linux_arm64.tar.gz"
+      sha256 "8fe2f9ed31cc28655e21e79f57ef38792e97b283a67232c07b8cfebb0c3401f4"
       define_method(:install) do
         bin.install "statora"
       end
@@ -36,15 +36,11 @@ class Statora < Formula
 
   def caveats
     <<~EOS
-      To use statora as a transparent php/composer shim, create symlinks:
-        statora symlinks
-
-      To enable auto-switching when you cd into a project, add to your shell rc:
+      To enable PHP version switching, add to your shell rc:
         zsh/bash:  eval "$(statora env)"
         fish:      statora env | source
 
-      To uninstall, remove symlinks and data first:
-        statora symlinks
+      To uninstall, remove statora data first:
         rm -rf ~/.statora
       Then run: brew uninstall statora
     EOS
